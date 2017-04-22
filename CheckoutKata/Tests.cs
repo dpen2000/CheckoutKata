@@ -9,20 +9,14 @@ namespace CheckoutKata
 {
     public class Tests
     {
-        [Fact]
-        public void IfAIsScanned_TotalPriceIs50()
+        [Theory]
+        [InlineData("A", 50)]
+        [InlineData("B", 30)]
+        public void SingleItemsCanBePriced(string itemCode, int expectedTotalPrice)
         {
             var checkout = new Checkout();
-            checkout.Scan("A");
-            Assert.Equal(50, checkout.GetTotalPrice());
-        }
-
-        [Fact]
-        public void IfBIsScanned_TotalPriceIs30()
-        {
-            var checkout = new Checkout();
-            checkout.Scan("B");
-            Assert.Equal(30, checkout.GetTotalPrice());
+            checkout.Scan(itemCode);
+            Assert.Equal(expectedTotalPrice, checkout.GetTotalPrice());
         }
 
         private class Checkout
