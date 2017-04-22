@@ -12,7 +12,7 @@ namespace CheckoutKata
         [Fact]
         public void Test()
         {
-
+            var checkout = new Checkout();
         }
     }
 }
