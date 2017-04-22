@@ -10,9 +10,9 @@ namespace CheckoutKata
     public class Tests
     {
         [Theory]
-        [InlineData(new [] { "A" }, 50)]
+        [InlineData(new[] { "A" }, 50)]
         [InlineData(new[] { "B" }, 30)]
-        [InlineData(new [] { "A", "B" }, 80)]
+        [InlineData(new[] { "A", "B" }, 80)]
         public void CanCalculateTotalPriceCorrectly(string[] itemCodesToScan, int expectedTotalPrice)
         {
             Dictionary<string, int> itemToPriceDictionary = new Dictionary<string, int>();
