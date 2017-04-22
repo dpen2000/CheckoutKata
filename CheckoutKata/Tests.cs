@@ -17,6 +17,14 @@ namespace CheckoutKata
             Assert.Equal(50, checkout.GetTotalPrice());
         }
 
+        [Fact]
+        public void IfBIsScanned_TotalPriceIs30()
+        {
+            var checkout = new Checkout();
+            checkout.Scan("B");
+            Assert.Equal(30, checkout.GetTotalPrice());
+        }
+
         private class Checkout
         {
             public Checkout()
