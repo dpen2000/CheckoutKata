@@ -14,6 +14,10 @@ namespace CheckoutKata
 
         internal int GetTotalPrice()
         {
+            if (_itemCodesScanned.Count == 2 && _itemCodesScanned.Distinct().Count() == 1)
+            {
+                return _itemToPriceDictionary[_itemCodesScanned.First()].PriceForTwo;
+            }
             return _itemCodesScanned.Sum(itemCode => _itemToPriceDictionary[itemCode].Price);
         }
 
