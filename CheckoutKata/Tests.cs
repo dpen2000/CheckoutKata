@@ -14,7 +14,10 @@ namespace CheckoutKata
         [InlineData("B", 30)]
         public void SingleItemsCanBePriced(string itemCode, int expectedTotalPrice)
         {
-            var checkout = new Checkout();
+            Dictionary<char, int> itemToPriceDictionary = new Dictionary<char, int>();
+            itemToPriceDictionary.Add('A', 50);
+            itemToPriceDictionary.Add('B', 30);
+            var checkout = new Checkout(itemToPriceDictionary);
             checkout.Scan(itemCode);
             Assert.Equal(expectedTotalPrice, checkout.GetTotalPrice());
         }
@@ -22,15 +25,15 @@ namespace CheckoutKata
         private class Checkout
         {
             private string _itemCode;
-            public Checkout()
+            private Dictionary<char, int> _itemToPriceDictionary;
+            public Checkout(Dictionary<char, int> itemToPriceDictionary)
             {
+                _itemToPriceDictionary = itemToPriceDictionary;
             }
 
             internal int GetTotalPrice()
             {
-                if (_itemCode == "B")
-                    return 30;
-                return 50;
+                return _itemToPriceDictionary[_itemCode.First()];
             }
 
             internal void Scan(string itemCode)
