@@ -10,15 +10,19 @@ namespace CheckoutKata
     public class Tests
     {
         [Theory]
-        [InlineData("A", 50)]
-        [InlineData("B", 30)]
-        public void SingleItemsCanBePriced(string itemCode, int expectedTotalPrice)
+        [InlineData(new [] { "A" }, 50)]
+        [InlineData(new[] { "B" }, 30)]
+        [InlineData(new [] { "A", "B" }, 80)]
+        public void CanCalculateTotalPriceCorrectly(string[] itemCodesToScan, int expectedTotalPrice)
         {
             Dictionary<char, int> itemToPriceDictionary = new Dictionary<char, int>();
             itemToPriceDictionary.Add('A', 50);
             itemToPriceDictionary.Add('B', 30);
             var checkout = new Checkout(itemToPriceDictionary);
-            checkout.Scan(itemCode);
+            foreach (var itemCode in itemCodesToScan)
+            {
+                checkout.Scan(itemCode);
+            }
             Assert.Equal(expectedTotalPrice, checkout.GetTotalPrice());
         }
 
