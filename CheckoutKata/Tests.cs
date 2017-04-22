@@ -20,7 +20,7 @@ namespace CheckoutKata
         {
             var itemToPriceDictionary = new Dictionary<string, PricingRules>();
             itemToPriceDictionary.Add("A", new PricingRules(50));
-            itemToPriceDictionary.Add("B", new PricingRules(30) { PriceForTwo = 45 });
+            itemToPriceDictionary.Add("B", new PricingRules(30) { SpecialPrice = new SpecialPriceConfig(45, 2) });
             itemToPriceDictionary.Add("C", new PricingRules(20));
             var checkout = new Checkout(itemToPriceDictionary);
             foreach (var itemCode in itemCodesToScan)

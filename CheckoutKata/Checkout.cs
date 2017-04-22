@@ -18,11 +18,11 @@ namespace CheckoutKata
             List<string> itemsRemaining = _itemCodesScanned.ToList();
             foreach (var itemToPrice in _itemToPriceDictionary)
             {
-                if (itemToPrice.Value.PriceForTwo.HasValue)
+                if (itemToPrice.Value.SpecialPrice != null)
                 {
-                    var numberOfApplicationsOfDiscount = itemsRemaining.Count(x => x == itemToPrice.Key) / 2;
-                    totalPrice += numberOfApplicationsOfDiscount * itemToPrice.Value.PriceForTwo.Value;
-                    foreach (var time in Enumerable.Range(0, numberOfApplicationsOfDiscount * 2))
+                    var numberOfApplicationsOfDiscount = itemsRemaining.Count(x => x == itemToPrice.Key) / itemToPrice.Value.SpecialPrice.UnitsForPriceToApply;
+                    totalPrice += numberOfApplicationsOfDiscount * itemToPrice.Value.SpecialPrice.Price;
+                    foreach (var time in Enumerable.Range(0, numberOfApplicationsOfDiscount * itemToPrice.Value.SpecialPrice.UnitsForPriceToApply))
                     {
                         itemsRemaining.Remove(itemToPrice.Key);
                     }
