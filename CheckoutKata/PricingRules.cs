@@ -4,6 +4,6 @@
     {
         public PricingRules(int price) => Price = price;
         public int Price { get; set; }
-        public int PriceForTwo { get; set; }
+        public int? PriceForTwo { get; set; }
     }
 }
