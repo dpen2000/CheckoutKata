@@ -37,8 +37,7 @@ namespace CheckoutKata
 
             internal int GetTotalPrice()
             {
-                if (_itemCodesScanned.Count > 1) return 80;
-                return _itemToPriceDictionary[_itemCodesScanned.First()];
+                return _itemCodesScanned.Sum(itemCode => _itemToPriceDictionary[itemCode]);
             }
 
             internal void Scan(string itemCode)
