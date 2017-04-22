@@ -25,7 +25,7 @@ namespace CheckoutKata
 
             internal int GetTotalPrice()
             {
-                return 0;
+                return 50;
             }
 
             internal void Scan(string v)
