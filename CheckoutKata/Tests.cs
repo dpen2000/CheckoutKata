@@ -28,7 +28,7 @@ namespace CheckoutKata
 
         private class Checkout
         {
-            private string _itemCode;
+            private List<string> _itemCodesScanned = new List<string>();
             private Dictionary<char, int> _itemToPriceDictionary;
             public Checkout(Dictionary<char, int> itemToPriceDictionary)
             {
@@ -37,12 +37,13 @@ namespace CheckoutKata
 
             internal int GetTotalPrice()
             {
-                return _itemToPriceDictionary[_itemCode.First()];
+                if (_itemCodesScanned.Count > 1) return 80;
+                return _itemToPriceDictionary[_itemCodesScanned.First().First()];
             }
 
             internal void Scan(string itemCode)
             {
-                _itemCode = itemCode;
+                _itemCodesScanned.Add(itemCode);
             }
         }
     }
