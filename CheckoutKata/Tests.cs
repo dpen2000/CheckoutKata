@@ -13,12 +13,24 @@ namespace CheckoutKata
         public void Test()
         {
             var checkout = new Checkout();
+            checkout.Scan("A");
+            Assert.Equal(50, checkout.GetTotalPrice());
         }
 
         private class Checkout
         {
             public Checkout()
             {
+            }
+
+            internal int GetTotalPrice()
+            {
+                return 0;
+            }
+
+            internal void Scan(string v)
+            {
+
             }
         }
     }
