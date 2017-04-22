@@ -27,18 +27,21 @@ namespace CheckoutKata
 
         private class Checkout
         {
+            private string _itemCode;
             public Checkout()
             {
             }
 
             internal int GetTotalPrice()
             {
+                if (_itemCode == "B")
+                    return 30;
                 return 50;
             }
 
             internal void Scan(string itemCode)
             {
-
+                _itemCode = itemCode;
             }
         }
     }
