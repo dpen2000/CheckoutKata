@@ -15,9 +15,9 @@ namespace CheckoutKata
         [InlineData(new [] { "A", "B" }, 80)]
         public void CanCalculateTotalPriceCorrectly(string[] itemCodesToScan, int expectedTotalPrice)
         {
-            Dictionary<char, int> itemToPriceDictionary = new Dictionary<char, int>();
-            itemToPriceDictionary.Add('A', 50);
-            itemToPriceDictionary.Add('B', 30);
+            Dictionary<string, int> itemToPriceDictionary = new Dictionary<string, int>();
+            itemToPriceDictionary.Add("A", 50);
+            itemToPriceDictionary.Add("B", 30);
             var checkout = new Checkout(itemToPriceDictionary);
             foreach (var itemCode in itemCodesToScan)
             {
@@ -29,8 +29,8 @@ namespace CheckoutKata
         private class Checkout
         {
             private List<string> _itemCodesScanned = new List<string>();
-            private Dictionary<char, int> _itemToPriceDictionary;
-            public Checkout(Dictionary<char, int> itemToPriceDictionary)
+            private Dictionary<string, int> _itemToPriceDictionary;
+            public Checkout(Dictionary<string, int> itemToPriceDictionary)
             {
                 _itemToPriceDictionary = itemToPriceDictionary;
             }
@@ -38,7 +38,7 @@ namespace CheckoutKata
             internal int GetTotalPrice()
             {
                 if (_itemCodesScanned.Count > 1) return 80;
-                return _itemToPriceDictionary[_itemCodesScanned.First().First()];
+                return _itemToPriceDictionary[_itemCodesScanned.First()];
             }
 
             internal void Scan(string itemCode)
