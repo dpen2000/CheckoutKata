@@ -22,8 +22,10 @@ namespace CheckoutKata
                 {
                     var numberOfApplicationsOfDiscount = itemsRemaining.Count(x => x == itemToPrice.Key) / 2;
                     totalPrice += numberOfApplicationsOfDiscount * itemToPrice.Value.PriceForTwo.Value;
-                    foreach(var time in Enumerable.Range(0, numberOfApplicationsOfDiscount * 2))
+                    foreach (var time in Enumerable.Range(0, numberOfApplicationsOfDiscount * 2))
+                    {
                         itemsRemaining.Remove(itemToPrice.Key);
+                    }
                 }
             }
 
