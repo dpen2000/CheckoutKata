@@ -10,7 +10,7 @@ namespace CheckoutKata
     public class Tests
     {
         [Fact]
-        public void Test()
+        public void IfAIsScanned_TotalPriceIs50()
         {
             var checkout = new Checkout();
             checkout.Scan("A");
@@ -28,7 +28,7 @@ namespace CheckoutKata
                 return 50;
             }
 
-            internal void Scan(string v)
+            internal void Scan(string itemCode)
             {
 
             }
