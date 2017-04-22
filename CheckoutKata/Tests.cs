@@ -15,6 +15,7 @@ namespace CheckoutKata
         [InlineData(new[] { "A", "B" }, 80)]
         [InlineData(new[] { "B", "B" }, 45)]
         [InlineData(new[] { "C", "C" }, 40)]
+        [InlineData(new[] { "B", "B", "C" }, 65)]
         public void CanCalculateTotalPriceCorrectly(string[] itemCodesToScan, int expectedTotalPrice)
         {
             var itemToPriceDictionary = new Dictionary<string, PricingRules>();
