@@ -14,5 +14,12 @@ namespace CheckoutKata
         {
             var checkout = new Checkout();
         }
+
+        private class Checkout
+        {
+            public Checkout()
+            {
+            }
+        }
     }
 }
