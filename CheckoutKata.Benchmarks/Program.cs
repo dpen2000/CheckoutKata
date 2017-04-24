@@ -15,7 +15,7 @@ namespace CheckoutKata.Benchmarks
             BenchmarkRunner.Run<CheckoutKataBenchmark>();
         }
     }
-
+    [MemoryDiagnoser]
     public class CheckoutKataBenchmark
     {
         Dictionary<string, PricingRules> _itemToPriceDictionary;
@@ -48,6 +48,13 @@ namespace CheckoutKata.Benchmarks
         public int RunNew()
         {
             var checkout = new Checkout(_itemToPriceDictionary);
+            return InnerBenchmark(checkout);
+        }
+
+        [Benchmark]
+        public int RunNewNew()
+        {
+            var checkout = new FutureCheckout(_itemToPriceDictionary);
             return InnerBenchmark(checkout);
         }
     }
