@@ -15,24 +15,22 @@ namespace CheckoutKata
         public int GetTotalPrice()
         {
             int totalPrice = 0;
-            List<string> itemsRemaining = _itemCodesScanned.ToList();
             foreach (var itemToPrice in _itemToPriceDictionary)
             {
                 var itemCode = itemToPrice.Key;
                 var pricingRules = itemToPrice.Value;
                 var specialPrice = pricingRules.SpecialPrice;
+                int itemCount = _itemCodesScanned.Count(x => x == itemCode);
                 if (specialPrice != null)
                 {
-                    var numberOfApplicationsOfDiscount = itemsRemaining.Count(x => x == itemCode) / specialPrice.UnitsForPriceToApply;
+                    var numberOfApplicationsOfDiscount = _itemCodesScanned.Count(x => x == itemCode) / specialPrice.UnitsForPriceToApply;
                     totalPrice += numberOfApplicationsOfDiscount * specialPrice.Price;
-                    foreach (var time in Enumerable.Range(0, numberOfApplicationsOfDiscount * specialPrice.UnitsForPriceToApply))
-                    {
-                        itemsRemaining.Remove(itemCode);
-                    }
+                    itemCount -= numberOfApplicationsOfDiscount * specialPrice.UnitsForPriceToApply;
                 }
+                totalPrice += itemCount * pricingRules.Price;
             }
 
-            return totalPrice + itemsRemaining.Sum(itemCode => _itemToPriceDictionary[itemCode].Price);
+            return totalPrice;
         }
 
         public void Scan(string itemCode)
