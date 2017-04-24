@@ -21,13 +21,14 @@ namespace CheckoutKata.Benchmarks
         Dictionary<string, PricingRules> _itemToPriceDictionary;
         public CheckoutKataBenchmark()
         {
-            var _itemToPriceDictionary = new Dictionary<string, PricingRules>();
+            _itemToPriceDictionary = new Dictionary<string, PricingRules>();
             _itemToPriceDictionary.Add("A", new PricingRules(50) { SpecialPrice = new SpecialPriceConfig(130, 3) });
             _itemToPriceDictionary.Add("B", new PricingRules(30) { SpecialPrice = new SpecialPriceConfig(45, 2) });
             _itemToPriceDictionary.Add("C", new PricingRules(20));
             _itemToPriceDictionary.Add("D", new PricingRules(15));
         }
-        [Benchmark]
+
+        [Benchmark(Baseline = true)]
         public int RunLegacy()
         {
             var checkout = new CheckoutLegacy(_itemToPriceDictionary);
