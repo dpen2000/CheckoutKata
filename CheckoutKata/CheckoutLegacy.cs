@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace CheckoutKata
 {
-    public class Checkout : ICheckout
+    public class CheckoutLegacy : ICheckout
     {
         private List<string> _itemCodesScanned = new List<string>();
         private Dictionary<string, PricingRules> _itemToPriceDictionary;
-        public Checkout(Dictionary<string, PricingRules> itemToPriceDictionary)
+        public CheckoutLegacy(Dictionary<string, PricingRules> itemToPriceDictionary)
         {
             _itemToPriceDictionary = itemToPriceDictionary;
         }
