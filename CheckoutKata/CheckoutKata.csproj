@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checkout.cs" />
-    <Compile Include="CheckoutLegacy.cs" />
     <Compile Include="ICheckout.cs" />
     <Compile Include="PricingRules.cs" />
     <Compile Include="SpecialPriceConfig.cs" />

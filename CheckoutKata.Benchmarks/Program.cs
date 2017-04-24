@@ -28,13 +28,6 @@ namespace CheckoutKata.Benchmarks
             _itemToPriceDictionary.Add("D", new PricingRules(15));
         }
 
-        [Benchmark(Baseline = true)]
-        public int RunLegacy()
-        {
-            var checkout = new CheckoutLegacy(_itemToPriceDictionary);
-            return InnerBenchmark(checkout);
-        }
-
         private static int InnerBenchmark(ICheckout checkout)
         {
             foreach (var time in Enumerable.Range(1, 1000))
