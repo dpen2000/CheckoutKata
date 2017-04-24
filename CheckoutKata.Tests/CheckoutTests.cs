@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CheckoutKata
+namespace CheckoutKata.Tests
 {
-    public class Tests
+    public class CheckoutTests
     {
         [Theory]
         [InlineData(new[] { "A" }, 50)]
