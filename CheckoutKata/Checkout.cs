@@ -23,7 +23,7 @@ namespace CheckoutKata
                 int itemCount = _itemCodesScanned.Count(x => x == itemCode);
                 if (specialPrice != null)
                 {
-                    var numberOfApplicationsOfDiscount = _itemCodesScanned.Count(x => x == itemCode) / specialPrice.UnitsForPriceToApply;
+                    var numberOfApplicationsOfDiscount = itemCount / specialPrice.UnitsForPriceToApply;
                     totalPrice += numberOfApplicationsOfDiscount * specialPrice.Price;
                     itemCount -= numberOfApplicationsOfDiscount * specialPrice.UnitsForPriceToApply;
                 }
